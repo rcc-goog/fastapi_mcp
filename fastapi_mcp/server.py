@@ -211,8 +211,12 @@ class FastApiMCP:
         mount_path: str,
         dependencies: Optional[Sequence[params.Depends]],
     ):
-        @router.post(
+        paths = [
             f"{mount_path}/messages/",
+            f"{mount_path}/messages",
+        ]
+        @router.post(
+            paths,
             include_in_schema=False,
             operation_id="mcp_messages",
             dependencies=dependencies,
